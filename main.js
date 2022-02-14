@@ -6,6 +6,15 @@ function initMap() {
     zoom: 12,
   });
 }
+function addMarker(location, map) {
+    // Add the marker at the clicked location, and add the next-available label
+    // from the array of alphabetical characters.
+    new google.maps.Marker({
+      position: location,
+      map: map,
+    });
+  }
+  
 let stationInfo = [];
 let stationStatus = [];
 let bigArray = [];
@@ -42,5 +51,9 @@ function merge(){
         bigArray[i] = stationInfo[i].concat(stationStatus[i]);
         
     }
-    console.log(bigArray);
+    bigArray.forEach(e=>{
+        let location = { lat: e[1], lng: e[2]}
+        //console.log(location);
+        addMarker(location,map);
+    })
 }
