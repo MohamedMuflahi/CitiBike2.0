@@ -1,11 +1,11 @@
-// let map;
+let map;
 
-// function initMap() {
-//   map = new google.maps.Map(document.getElementById("map"), {
-//     center: { lat: -34.397, lng: 150.644 },
-//     zoom: 8,
-//   });
-// }
+function initMap() {
+  map = new google.maps.Map(document.getElementById("map"), {
+    center: { lat: 40.76727216, lng: -73.99392888 },
+    zoom: 12,
+  });
+}
 let stationInfo = [];
 let stationStatus = [];
 let bigArray = [];
@@ -44,5 +44,3 @@ function merge(){
     }
     console.log(bigArray);
 }
-
-
