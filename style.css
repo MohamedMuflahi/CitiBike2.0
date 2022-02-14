@@ -1,0 +1,11 @@
+/* Set the size of the div element that contains the map */
+#map {
+    height: 80vh;
+    /* The height is 400 pixels */
+    width: 100vw;
+    position: absolute;
+    bottom: 0px;
+    right: 0px;
+    /* The width is the width of the web page */
+  }
+  
