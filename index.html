@@ -1,24 +1,47 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Simple Map</title>
+    <title>CitiBike 2.0</title>
     <!-- <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script> -->
+    <link rel="shortcut icon" href="CitibikeLogo.png">
     <link rel="stylesheet" type="text/css" href="style.css" />
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-   
+    <script src="https://kit.fontawesome.com/df7ed5b24b.js" crossorigin="anonymous"></script>
   </head>
   <body>
-    <div id="menu">
-        <div class="container bcontent">
-            <h2>Nearest Locations</h2>
-            <hr />
-            <div class="row" id="row">
-
+    <div id="touch"class="container">
+      <div class="row text-center ">
+        <div class="col" style="">
+          <img style="padding-top: 10px;" src="https://cdn.lyft.com/static/bikesharefe/logo/CitiBike.svg"/>
+        
+        <!-- <button id='find-button' type="button" class="btn btn-primary btn-lg ">FIND BIKES</button> -->
+        
+         
+          
+          <div class="col mx-auto">
+            <div class="input-group">
+              <div class="form-outline">
+                <input type="search" id="form1" class="form-control" />
+                
+              </div>
+              <button id='button'type="button" class="btn btn-primary">
+                <i class="fas fa-search"></i>
+              </button>
             </div>
+          </div>
+          <hr/>
         </div>
+      </div>  
+      <div class="row">
+        <div class="col-12 text-center">
+          <div id='deck' class="text-content card-deck">
+          
+          </div>
+
+        </div>
+      </div>
     </div>
-    
     <div id="map"></div>
 
     
@@ -26,8 +49,9 @@
     <script src="main.js" async defer></script>
     
     <script async defer
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDpJtBs8v_mIPf5X0Q5TmF_obgX6bevh-w&callback=initMap&v=weekly">
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDpJtBs8v_mIPf5X0Q5TmF_obgX6bevh-w&callback=initMap&v=weekly&libraries=places">
   </script>
+  
     <!-- AIzaSyDpJtBs8v_mIPf5X0Q5TmF_obgX6bevh-w -->
         
     </body>

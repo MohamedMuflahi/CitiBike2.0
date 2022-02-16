@@ -1,13 +1,16 @@
 /* Set the size of the div element that contains the map */
-#menu{
-    position:fixed;
-    top:0;
-    width:100%;
-    z-index:100;
+.input-group{
     
 }
+.disable-select{
+    -ms-user-select:none;
+ }
+.card{
+    max-width: 300px;
+    /* max-height: 200px; */
+}
 #map {
-    height: 70vh;
+    height: 65vh;
     /* The height is 400 pixels */
     width: 100vw;
     position: absolute;
