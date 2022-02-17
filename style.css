@@ -1,16 +1,25 @@
 /* Set the size of the div element that contains the map */
-.input-group{
-    
+body{
+    padding: 0;
+    margin: 0;
 }
+#pinned{
+    position: relative;
+    top: -33vh;
+    right: -82vw;
+    max-width: 300px;
+}
+
 .disable-select{
     -ms-user-select:none;
- }
+}
 .card{
-    max-width: 300px;
+    max-width: 270px;
+    
     /* max-height: 200px; */
 }
 #map {
-    height: 65vh;
+    height: 60vh;
     /* The height is 400 pixels */
     width: 100vw;
     position: absolute;
@@ -18,5 +27,11 @@
     right: 0px;
     
     /* The width is the width of the web page */
-  }
-  
+}
+.icon{
+    height: 20px;
+    width: 20px;
+}
+.button{
+    
+}

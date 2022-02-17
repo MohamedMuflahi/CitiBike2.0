@@ -3,6 +3,7 @@ let stationInfo = [];
 let stationStatus = [];
 let bigArray = [];
 let rowDiv = document.getElementById('deck');
+let displayDiv = document.getElementById('display');
 let map;
 let image; 
 let secondImage;
@@ -17,6 +18,7 @@ let button = document.getElementById('button');
 let first = false;
 let second = false;
 let locationMarker;
+let previousId;
 //let findButton = document.getElementById('find-button')
 let touch = document.getElementById('touch');
 //touch.addEventListener('click',merge);
@@ -26,7 +28,7 @@ function initMap() {
     center: { lat: 40.7052196, lng: -74.0137571 },
     zoom: 14,
     maxZoom: 20,
-    minZoom: 10
+    minZoom: 12
   });
   const Bikediv = document.createElement("div");
   const LocationDiv = document.createElement("div");
@@ -125,8 +127,8 @@ function drop() {
     let contentString = `
     <div class="card">
         <div class="card-body">
-          <h5 class="card-title">${element[0]} <button type="button" class="btn btn-close">❤️</button></h5>
-          
+          <img id="${element[3]}"class="icon" onclick="CreatePinDisplay('${element[0]}','${element[4]}','${element[5]}','${element[6]}','${minutes}','${element[3]}')" src="thumbtack.png"/
+          <h5 class="card-title">${element[0]} </h5>
           <p class="card-text text-center">${element[4]}&nbsp&nbsp&nbsp&nbsp&nbsp | &nbsp&nbsp&nbsp&nbsp&nbsp ${element[5]}  &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp${element[6]}</p>
           <p class="card-text">Classic ⚡Electric &nbspDocks</p>
           <p class="card-text"><small class="text-muted">Last updated ${minutes} mins ago</small></p>
@@ -151,6 +153,7 @@ function drop() {
       contentString = `
       <div class="card">
         <div class="card-body">
+          <button onclick="CreatePinDisplay(${element},${minutes})"><img class="icon" src="thumbtack.png"/></button>
           <h5 class="card-title">${element[0]}</h5>
           <p>This station isn't up and running yet, but it will be soon. In the meantime, try a different one.</p>
           <p class="card-text"><small class="text-muted">Last updated ${minutes} mins ago</small></p>
@@ -185,7 +188,9 @@ function drop() {
           map,
           shouldFocus: false,
         });
+    
   });
+  //console.log(infowindow.myValue);
   secondMarkersArray.push(smallMarker);
   markersArray.push(marker);
 } 
@@ -212,17 +217,23 @@ function drop() {
         obj.innerHTML = `
         <div class="card">
         <div class="card-body">
-          <h5 class="card-title">${e[0]}</h5>
-          
+          <h5 class="card-title">${e[0]} </h5>
           <p class="card-text text-center">${e[4]}&nbsp&nbsp&nbsp&nbsp&nbsp | &nbsp&nbsp&nbsp&nbsp&nbsp ${e[5]}  &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp${e[6]}</p>
           <p class="card-text">Classic ⚡Electric  &nbsp&nbspDocks</p>
           <p class="card-text"><small class="text-muted">Last updated ${minutes} mins ago</small></p>
         </div>
         </div>
-        `
+        `;
+        // grabs nested SVG pushPin icon and adds event Listener
+        // obj.children[0].children[0].children[0].children[0].addEventListener('click',()=>{
+        //   console.log('clicked', e[3]);
+        // })
+        
         rowDiv.appendChild(obj);
+
       })
     }
+    
   }
   function distance(lat1, lon1, lat2, lon2, unit) {
     let radlat1 = Math.PI * lat1/180
@@ -435,4 +446,37 @@ function CreateLocationButton(div){
         nearestLoc = [];
         navigator.geolocation.getCurrentPosition(success, error, options);
       });
+}
+const CreatePinDisplay = (name,bikes,eBikes,docks,minutes,id) =>{
+  console.log('clicked');
+  // let e = event.target.getAttribute('data-arg1');
+  // let minutes = event.target.getAttribute('data-arg2');
+  let iconimage = document.getElementById(id);
+  previousId = document.getElementById(previousId);
+  if(previousId){
+    iconimage.src = 'fullthumbtack.png';
+    previousId.src = 'thumbtack.png';
+  }else{
+    iconimage.src = 'fullthumbtack.png';
+  }
+  previousId = id;
+  let emptydiv = document.createElement('div');
+  emptydiv.innerHTML = `
+  <div id='pinned' class="card text-center">   
+    <div class="card-body">
+      <img class="icon" src="fullthumbtack.png"/>
+      <h5 class="card-title">${name}</h5>
+      <p class="card-text text-center">${bikes}&nbsp&nbsp&nbsp&nbsp&nbsp | &nbsp&nbsp&nbsp&nbsp&nbsp ${eBikes}  &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp${docks}</p>
+      <p class="card-text">Classic ⚡Electric  &nbsp&nbspDocks</p>
+      <p class="card-text"><small class="text-muted">Last updated ${minutes} mins ago</small></p>
+    </div>
+  </div>
+  `;
+  if(displayDiv.children.length <= 0){
+    // empty 
+    displayDiv.appendChild(emptydiv);
+  }else{
+    removeAllChildNodes(displayDiv);
+    displayDiv.appendChild(emptydiv);
+  }
 }
